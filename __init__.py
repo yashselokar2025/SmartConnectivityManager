@@ -1,25 +1,18 @@
-"""FastAPI framework, high performance, easy to learn, fast to code, ready for production"""
+from __future__ import annotations
 
-__version__ = "0.124.0"
+from pip._internal.utils import _log
 
-from starlette import status as status
+# init_logging() must be called before any call to logging.getLogger()
+# which happens at import of most modules.
+_log.init_logging()
 
-from .applications import FastAPI as FastAPI
-from .background import BackgroundTasks as BackgroundTasks
-from .datastructures import UploadFile as UploadFile
-from .exceptions import HTTPException as HTTPException
-from .exceptions import WebSocketException as WebSocketException
-from .param_functions import Body as Body
-from .param_functions import Cookie as Cookie
-from .param_functions import Depends as Depends
-from .param_functions import File as File
-from .param_functions import Form as Form
-from .param_functions import Header as Header
-from .param_functions import Path as Path
-from .param_functions import Query as Query
-from .param_functions import Security as Security
-from .requests import Request as Request
-from .responses import Response as Response
-from .routing import APIRouter as APIRouter
-from .websockets import WebSocket as WebSocket
-from .websockets import WebSocketDisconnect as WebSocketDisconnect
+
+def main(args: list[str] | None = None) -> int:
+    """This is preserved for old console scripts that may still be referencing
+    it.
+
+    For additional details, see https://github.com/pypa/pip/issues/7498.
+    """
+    from pip._internal.utils.entrypoints import _wrapper
+
+    return _wrapper(args)
