@@ -1,5 +1,14 @@
-"""The `utils` module is a backport module from V1."""
+import time
+from network_checker import check_internet
+from recharge import auto_recharge
 
-from ._migration import getattr_migration
+def auto_network_watchdog(interval=10):
+    print("🔍 Auto network monitor started...")
 
-__getattr__ = getattr_migration(__name__)
+    while True:
+        if check_internet():
+            print("✅ Internet active")
+        else:
+            print("❌ No Internet — Triggering auto recharge...")
+            print(auto_recharge())
+        time.sleep(interval)
